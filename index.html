@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arfa Ahmed, Android Developer</title>
+<meta name="description" content="Arfa Ahmed is an Android developer in Islamabad, Pakistan. Kotlin, Java, Firebase, AdMob and Google Play publishing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Layout: dark one-page site. Sticky nav, hero with portrait slot, marquee of skills, then sections in order. Mint on deep green-black. */
+  :root {
+    --bg: #f2f6f3; --surface: #ffffff; --surface-2: #e9f0ec; --fg: #12201a; --muted: #52645b;
+    --line: #d3dfd8; --accent: #0b7a50; --accent-ink: #ffffff; --accent-soft: #d8eee3;
+    --warn: #7e5300; --warn-soft: #f5e9c9; --nav: rgba(242,246,243,.88);
+    --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1310; --surface: #121e19; --surface-2: #182923; --fg: #e8f1ec; --muted: #9bb0a6;
+      --line: #223730; --accent: #52d79c; --accent-ink: #06150e; --accent-soft: #15382a;
+      --warn: #e9c672; --warn-soft: #302710; --nav: rgba(11,19,16,.86); color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1310; --surface: #121e19; --surface-2: #182923; --fg: #e8f1ec; --muted: #9bb0a6;
+    --line: #223730; --accent: #52d79c; --accent-ink: #06150e; --accent-soft: #15382a;
+    --warn: #e9c672; --warn-soft: #302710; --nav: rgba(11,19,16,.86); color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 400 16px/1.65 var(--body); }
+  img { max-width: 100%; }
+  h1, h2, h3, p { margin: 0; }
+  h1, h2, h3 { font-family: var(--display); line-height: 1.08; text-wrap: balance; }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .gutter { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .inner { max-width: 1080px; margin: 0 auto; }
+  .eyebrow { font: 500 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+
+  /* nav */
+  .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--nav); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .nav .inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 15px/1.1 var(--display); }
+  .mark { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); font: 700 14px/1 var(--display); border: 1px solid var(--line); }
+  .links { display: flex; gap: 4px; }
+  .links a { text-decoration: none; padding: 8px 12px; border-radius: 8px; font-size: 14px; color: var(--muted); }
+  .links a:hover { color: var(--fg); background: var(--surface-2); }
+  .nav-actions { display: flex; gap: 8px; align-items: center; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 18px; border-radius: 10px; font: 600 14px/1 var(--body); text-decoration: none; border: 1.5px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn.icon { width: 40px; padding: 0; height: 40px; }
+
+  /* hero */
+  .hero { padding-block: 56px 40px; }
+  .hero .inner { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 40px; align-items: center; }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .pill { font: 500 12px/1 var(--mono); padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); display: inline-flex; gap: 8px; align-items: center; }
+  .pill.live { color: var(--accent); background: var(--accent-soft); border-color: transparent; }
+  .pill.live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  .hero h1 { font-size: clamp(2.6rem, 7vw, 4.6rem); font-weight: 700; letter-spacing: -.025em; }
+  .role { font: 600 clamp(1.1rem, 2.4vw, 1.5rem)/1.3 var(--display); margin-top: 14px; }
+  .role span { color: var(--accent); }
+  .lead { color: var(--muted); max-width: 54ch; margin-top: 16px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .stats { display: grid; grid-template-columns: repeat(4, auto); justify-content: start; gap: 12px 32px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); }
+  .stats b { display: block; font: 700 2rem/1 var(--display); }
+  .stats span { font-size: 13px; color: var(--muted); }
+  .portrait { position: relative; aspect-ratio: 4 / 5; border-radius: 22px; background: linear-gradient(160deg, var(--accent-soft), var(--surface-2)); border: 1px solid var(--line); display: grid; place-items: center; overflow: hidden; max-width: 420px; justify-self: end; width: 100%; }
+  .portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 45% 25%; }
+  .portrait .initials { font: 700 5rem/1 var(--display); color: var(--accent); opacity: .85; }
+  .now { position: absolute; left: 14px; right: 14px; bottom: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+  .now small { display: block; font: 500 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+
+  /* marquee */
+  .marquee { border-block: 1px solid var(--line); overflow: hidden; background: var(--surface); }
+  .track { display: flex; gap: 12px; width: max-content; padding-block: 14px; animation: slide 38s linear infinite; }
+  .track span { font: 500 13px/1 var(--mono); padding: 8px 14px; border-radius: 8px; background: var(--surface-2); color: var(--muted); white-space: nowrap; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .track { animation: none; flex-wrap: wrap; width: auto; } html { scroll-behavior: auto; } }
+
+  /* sections */
+  section.block { padding-block: 72px 0; scroll-margin-top: 64px; }
+  .head { display: grid; gap: 12px; margin-bottom: 32px; max-width: 62ch; }
+  .head h2 { font-size: clamp(1.9rem, 4.5vw, 2.8rem); letter-spacing: -.015em; }
+  .head p { color: var(--muted); }
+  .about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px 48px; }
+  .about p + p { margin-top: 14px; }
+  .about p { color: var(--muted); }
+  .open { display: grid; gap: 12px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .card h3 { font-size: 1.1rem; margin-bottom: 6px; }
+  .card p { color: var(--muted); font-size: .95rem; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+
+  .job { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 8px 28px; padding: 24px; }
+  .job .when { font: 500 13px/1.5 var(--mono); color: var(--muted); }
+  .job h3 { font-size: 1.3rem; }
+  .job .org { color: var(--accent); font-weight: 600; margin-top: 4px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 14px 0 0; list-style: none; }
+  .tags li { font: 500 12px/1 var(--mono); padding: 7px 10px; border-radius: 6px; background: var(--surface-2); color: var(--muted); }
+
+  .work { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .proj { display: flex; flex-direction: column; gap: 12px; padding: 22px; min-width: 0; }
+  .proj .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .cat { font: 500 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .state { font: 500 11px/1 var(--mono); padding: 6px 8px; border-radius: 5px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+  .state.dev { background: var(--warn-soft); color: var(--warn); }
+  .proj h3 { font-size: 1.3rem; }
+  .proj p { color: var(--muted); font-size: .95rem; }
+  .proj .tags { margin-top: auto; padding-top: 4px; }
+  .proj .go { font-weight: 600; color: var(--accent); text-underline-offset: 3px; width: fit-content; }
+  .id { font: 400 12px/1.5 var(--mono); color: var(--muted); overflow-wrap: anywhere; }
+
+  .feat { display: grid; gap: 18px; }
+  .feat-card { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 20px 36px; padding: 28px; }
+  .feat-card .big b { display: block; font: 700 clamp(2.6rem, 6vw, 3.6rem)/1 var(--display); color: var(--accent); letter-spacing: -.02em; }
+  .feat-card .big span { display: block; margin-top: 8px; font-size: 13px; color: var(--muted); }
+  .feat-card .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .feat-card h3 { font-size: 1.6rem; }
+  .feat-card .what { margin-top: 8px; color: var(--fg); }
+  .did { margin: 14px 0 16px; padding-left: 18px; color: var(--muted); display: grid; gap: 6px; }
+  .feat-card .go { display: inline-block; margin-right: 14px; font-weight: 600; color: var(--accent); text-underline-offset: 3px; }
+  .more-head { margin-top: 56px; }
+  .more { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 12px; }
+  .more li { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; min-width: 0; }
+  .more li div { min-width: 0; }
+  .more strong { display: block; font-weight: 600; }
+  .more span { display: block; font-size: 13px; color: var(--muted); }
+  .more a { color: var(--accent); font-weight: 600; font-size: 14px; white-space: nowrap; text-underline-offset: 3px; }
+  .more em { font: 500 11px/1 var(--mono); font-style: normal; padding: 6px 8px; border-radius: 5px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+  .more em.dev { background: var(--warn-soft); color: var(--warn); }
+  .groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .groups .tags { margin-top: 12px; }
+
+  .edu { display: grid; gap: 14px; }
+  .edu .card { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 6px 28px; }
+  .edu .when { font: 500 13px/1.5 var(--mono); color: var(--muted); }
+
+  .contact { text-align: left; padding: 40px; border-radius: 22px; background: var(--accent); color: var(--accent-ink); display: grid; gap: 16px; }
+  .contact h2 { font-size: clamp(1.9rem, 4.5vw, 2.8rem); }
+  .contact p { max-width: 52ch; }
+  .contact .row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+  .contact .btn { background: var(--accent-ink); color: var(--accent); border-color: var(--accent-ink); }
+  .contact .btn.line { background: transparent; color: var(--accent-ink); border-color: var(--accent-ink); }
+  footer { padding-block: 40px 56px; color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 860px) {
+    .links { display: none; }
+    .hero .inner, .about { grid-template-columns: 1fr; }
+    .portrait { justify-self: start; max-width: 340px; }
+    .job, .edu .card, .feat-card { grid-template-columns: 1fr; }
+    .more { grid-template-columns: 1fr; }
+    .contact { padding: 28px 22px; }
+  }
+  @media (max-width: 480px) {
+    .stats { grid-template-columns: repeat(2, auto); gap: 16px 28px; }
+  }
+</style>
+
+</head>
+<body>
+<header class="nav gutter">
+  <div class="inner">
+    <a class="brand" href="#top"><span class="mark">AA</span>Arfa Ahmed</a>
+    <nav class="links" aria-label="Sections">
+      <a href="#about">About</a><a href="#experience">Experience</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#education">Education</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn icon" id="theme" type="button" aria-label="Switch light or dark theme">◐</button>
+      <a class="btn primary" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero gutter">
+    <div class="inner">
+      <div>
+        <div class="pills"><span class="pill live">Available for work</span><span class="pill">Full-time freelancer</span><span class="pill">Islamabad, Pakistan</span></div>
+        <h1>Arfa Ahmed</h1>
+        <p class="role">Android Developer / <span>Kotlin and Java / AdMob and Play Store</span></p>
+        <p class="lead">I have shipped more than 20 Android apps to Google Play, and I build them to stay stable and pass review. Maps and GPS, Firebase, ads and billing, then the unglamorous work after launch: crashes, SDK updates and policy fixes.</p>
+        <div class="cta">
+          <a class="btn primary" href="#work">View my work</a>
+          <a class="btn" href="https://www.fiverr.com/arfa_ahmed" target="_blank" rel="noopener">Hire me on Fiverr</a>
+          <a class="btn" href="https://www.linkedin.com/in/arfaahmed-dev/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/oyearfa" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <div class="stats">
+          <div><b>4+</b><span>Years of experience</span></div>
+          <div><b>20+</b><span>Apps live on Google Play</span></div>
+          <div><b>5M+</b><span>Downloads on one client app</span></div>
+          <div><b>4.6</b><span>Rating, GPS Area Calculator</span></div>
+        </div>
+      </div>
+      <div class="portrait">
+        <span class="initials" aria-hidden="true">AA</span>
+        <img src="photo.png" alt="Portrait of Arfa Ahmed" onerror="this.remove()">
+        <div class="now"><small>Currently</small><strong>Full-time freelance Android developer</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-label="Skills">
+    <div class="track" aria-hidden="true">
+      <span>Kotlin</span><span>Java</span><span>XML layouts</span><span>MVVM</span><span>Hilt</span><span>Firebase</span><span>Firestore</span><span>Remote Config</span><span>Google Maps</span><span>AdMob</span><span>Google Ads</span><span>Play Billing</span><span>R8</span><span>Play Console</span>
+      <span>Kotlin</span><span>Java</span><span>XML layouts</span><span>MVVM</span><span>Hilt</span><span>Firebase</span><span>Firestore</span><span>Remote Config</span><span>Google Maps</span><span>AdMob</span><span>Google Ads</span><span>Play Billing</span><span>R8</span><span>Play Console</span>
+    </div>
+  </div>
+
+  <section id="about" class="block gutter">
+    <div class="inner">
+      <div class="head"><p class="eyebrow">About</p><h2>Native Android, built to last past launch day.</h2></div>
+      <div class="about">
+        <div>
+          <p>I'm an Android developer with 4+ years of experience and a BS in Information Technology and an MS in Computer Science. I work in Kotlin and Java with XML screens, MVVM, Firebase, Google Maps and AdMob.</p>
+          <p>Most of my apps are maps, GPS and location tools, which means I deal daily with permissions, background limits, ad policy and Play Console warnings. I care about the boring parts: smaller builds, fewer crashes and clean policy reviews.</p>
+          <p>I reply fast, deliver on time and explain things in plain words.</p>
+        </div>
+        <div class="open">
+          <div class="card"><h3>New apps</h3><p>Custom Android apps from idea or Figma design to a Play Store release.</p></div>
+          <div class="card"><h3>Fixes and updates</h3><p>Crashes, targetSdk upgrades, Play policy rejections and R8 shrinking.</p></div>
+          <div class="card"><h3>Ads and billing</h3><p>AdMob, Remote Config ad switches and Play Billing subscriptions.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="block gutter">
+    <div class="inner">
+      <div class="head"><p class="eyebrow">Experience</p><h2>Where I work.</h2></div>
+      <div class="card job">
+        <div class="when">Full-time<br>Islamabad, Pakistan (remote)</div>
+        <div>
+          <h3>Freelance Android Developer</h3>
+          <p class="org">Self-employed, on Fiverr and direct</p>
+          <p style="color:var(--muted);margin-top:10px">Building new Android apps and keeping existing ones healthy: crash fixes, SDK and policy updates, AdMob and Firebase work, and Play Console releases.</p>
+          <ul class="tags"><li>Kotlin</li><li>Java</li><li>MVVM</li><li>Firebase</li><li>AdMob</li><li>Google Ads</li><li>Play Console</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="block gutter">
+    <div class="inner">
+      <div class="head"><p class="eyebrow">Featured work</p><h2>The three apps with the biggest reach.</h2><p>More than 20 of my apps are live on Google Play. These three have the most downloads.</p></div>
+
+      <div class="feat">
+
+        <article class="card feat-card">
+          <div class="big"><b>5M+</b><span>downloads on Google Play</span></div>
+          <div>
+            <div class="top"><span class="cat">Client project</span><span class="state">Live on Google Play</span></div>
+            <h3>Mobile Number Tracker</h3>
+            <p class="what">Phone number locator and family tracker with consent-based location sharing.</p>
+            <ul class="did">
+              <li>Invite family by phone number and see shared locations on a live map.</li>
+              <li>Find my phone, SOS emergency alert, and driving speed monitoring.</li>
+              <li>Built by me for a client, with ads and in-app purchases.</li>
+            </ul>
+            <a class="go" href="https://play.google.com/store/apps/details?id=com.mobilenumbertracker.locator" target="_blank" rel="noopener">View on Google Play</a>
+            <span class="id">com.mobilenumbertracker.locator</span>
+          </div>
+        </article>
+
+        <article class="card feat-card">
+          <div class="big"><b>50K+</b><span>downloads, rated 4.6 from 1.8K reviews</span></div>
+          <div>
+            <div class="top"><span class="cat">Tools</span><span class="state">Live on Google Play</span></div>
+            <h3>GPS Area Calculator</h3>
+            <p class="what">Measure land by walking the boundary or placing markers on a map. Works offline and keeps a history of saved measurements.</p>
+            <ul class="did">
+              <li>Turned on R8 and cut code size from 34.7 MB to 8.89 MB.</li>
+              <li>Fixed an AdMob "ads obscuring content" rejection by moving the banner off the map.</li>
+            </ul>
+            <a class="go" href="https://play.google.com/store/apps/details?id=com.gpsareameasurement.fieldareameasure" target="_blank" rel="noopener">View on Google Play</a>
+            <span class="id">com.gpsareameasurement.fieldareameasure</span>
+          </div>
+        </article>
+
+        <article class="card feat-card">
+          <div class="big"><b>10K+</b><span>downloads on Google Play</span></div>
+          <div>
+            <div class="top"><span class="cat">Camera</span><span class="state">Live on Google Play</span></div>
+            <h3>GPS Camera Map: Photo Location</h3>
+            <p class="what">Takes photos with location, date, time and map stamps, with photo and video templates, a QR scanner, weather and a compass.</p>
+            <ul class="did">
+              <li>Moved ads to the new Google Mobile Ads Next-Gen SDK and fixed its startup order.</li>
+              <li>Turned on R8 full mode with the keep rules Retrofit needs.</li>
+              <li>Raised targetSdk to 37 and removed a library that caused ANRs when ad screens closed.</li>
+            </ul>
+            <a class="go" href="https://play.google.com/store/apps/details?id=com.gpsmapcamera.timestampphoto.geoloaction" target="_blank" rel="noopener">View on Google Play</a>
+            <span class="id">com.gpsmapcamera.timestampphoto.geoloaction</span>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="head more-head"><p class="eyebrow">More apps</p><h2>Also built and maintained.</h2></div>
+      <ul class="more">
+        <li><div><strong>Family Tracker: Phone Locator</strong><span>Family circles, saved places, history, driving reports, chat</span></div><a href="https://play.google.com/store/apps/details?id=com.family.locator.gps.phonetracker.location" target="_blank" rel="noopener">Play Store</a></li>
+        <li><div><strong>Earth Map: Street View</strong><span>Live Earth camera, navigation, street view, satellite, compass</span></div><a href="https://play.google.com/store/apps/details?id=com.gps.navigation.earth.map.live.cam.satellite.view" target="_blank" rel="noopener">Play Store</a></li>
+        <li><div><strong>Voice GPS Navigation</strong><span>Voice routes, multi-stop, live street cameras, subscriptions</span></div><em>Published</em></li>
+        <li><div><strong>Camera Map UK</strong><span>GPS camera with 10 city templates and 8 languages</span></div><em>Built</em></li>
+        <li><div><strong>HireLocal</strong><span>Call or WhatsApp a nearby plumber or electrician</span></div><em class="dev">In development</em></li>
+        <li><div><strong>Echoes of Deen</strong><span>Quran, prayer times, Qibla and duas, offline-first</span></div><em class="dev">In development</em></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="skills" class="block gutter">
+    <div class="inner">
+      <div class="head"><p class="eyebrow">Skills</p><h2>What I work with, grouped.</h2></div>
+      <div class="groups">
+        <div class="card"><h3>Android</h3><ul class="tags"><li>Kotlin</li><li>Java</li><li>XML layouts</li><li>ViewBinding</li><li>MVVM</li><li>Hilt</li><li>Retrofit</li><li>Android Studio</li></ul></div>
+        <div class="card"><h3>Firebase and maps</h3><ul class="tags"><li>Firebase Auth</li><li>Firestore</li><li>Remote Config</li><li>Analytics</li><li>Google Maps</li><li>Credential Manager</li></ul></div>
+        <div class="card"><h3>Ads and billing</h3><ul class="tags"><li>AdMob</li><li>Next-Gen ads SDK</li><li>Google Ads</li><li>Play Billing</li><li>Ad policy fixes</li></ul></div>
+        <div class="card"><h3>Release and quality</h3><ul class="tags"><li>Play Console</li><li>R8 shrinking</li><li>targetSdk upgrades</li><li>ANR and crash fixes</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="block gutter">
+    <div class="inner">
+      <div class="head"><p class="eyebrow">Education</p><h2>Computer science background.</h2></div>
+      <div class="edu">
+        <div class="card"><div class="when">Graduated 2021</div><div><h3>MS Computer Science</h3><p>Khawaja Fareed University of Engineering and Information Technology, Rahim Yar Khan</p></div></div>
+        <div class="card"><div class="when">Graduated 2017</div><div><h3>BS Information Technology</h3><p>The Islamia University Bahawalpur</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="block gutter">
+    <div class="inner">
+      <div class="contact">
+        <p class="eyebrow" style="color:inherit;opacity:.8">Contact</p>
+        <h2>Have an app to build or fix?</h2>
+        <p>Message me with your idea or your problem. I'll reply with a clear scope, price and delivery time.</p>
+        <div class="row">
+          <a class="btn" href="https://www.fiverr.com/arfa_ahmed" target="_blank" rel="noopener">Message me on Fiverr</a>
+          <a class="btn line" href="https://www.linkedin.com/in/arfaahmed-dev/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn line" href="https://github.com/oyearfa" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="gutter"><div class="inner">Arfa Ahmed · Android Developer · Islamabad, Pakistan</div></footer>
+
+<script>
+  (function () {
+    var root = document.documentElement, btn = document.getElementById("theme");
+    try { var saved = localStorage.getItem("theme"); if (saved === "dark" || saved === "light") root.setAttribute("data-theme", saved); } catch (e) {}
+    btn.addEventListener("click", function () {
+      var current = root.getAttribute("data-theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      var next = current === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("theme", next); } catch (e) {}
+    });
+  })();
+</script>
+
+</body>
+</html>
